@@ -1,0 +1,61 @@
+kind: "PersistentVolume"
+apiVersion: "v1"
+metadata:
+  name: neo4j-data-storage
+  labels:
+    type: local
+    app: neo4j
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: fast
+  gcePersistentDisk:
+    pdName: pd-ssd-disk-1
+---
+kind: "PersistentVolume"
+apiVersion: "v1"
+metadata:
+  name: neo4j-plugin-storage
+  labels:
+    type: local
+    app: neo4j
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: fast
+  gcePersistentDisk:
+    pdName: pd-ssd-disk-1
+---
+kind: "PersistentVolumeClaim"
+apiVersion: "v1"
+metadata:
+  name: neo4j-data-claim
+  namespace: test
+  labels:
+    app: neo4j
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+  kind: "PersistentVolumeClaim"
+  apiVersion: "v1"
+  metadata:
+    name: neo4j-plugin-claim
+    namespace: test
+    labels:
+      app: neo4j
+  spec:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
