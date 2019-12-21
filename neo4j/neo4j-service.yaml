@@ -19,5 +19,4 @@ spec:
         targetPort: 7687
         name: bolt
     selector:
-      app: neo4j
-      component: core
+      app: neo4j-db

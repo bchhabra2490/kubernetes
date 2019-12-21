@@ -38,7 +38,7 @@ metadata:
   name: neo4j-data-claim
   namespace: test
   labels:
-    app: neo4j
+    app: neo4j-db
 spec:
   accessModes:
     - ReadWriteOnce
@@ -52,7 +52,7 @@ spec:
     name: neo4j-plugin-claim
     namespace: test
     labels:
-      app: neo4j
+      app: neo4j-db
   spec:
     accessModes:
       - ReadWriteOnce
